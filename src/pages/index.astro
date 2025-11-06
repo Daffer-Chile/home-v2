@@ -1,16 +1,73 @@
 ---
-
+import comingSoon from "@/assets/coming-soon.png";
+import "../styles/global.css";
+import { Image } from "astro:assets";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Daffer</title>
+  </head>
+  <body>
+    <div class="w-screen h-screen relative overflow-hidden">
+      <div
+        class="flex flex-col items-center justify-center text-white z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-6 text-center"
+      >
+        <div class="text-4xl md:text-6xl font-bold typewriter-container">
+          <h1 class="typewriter-text">Somos Daffer</h1>
+        </div>
+        <div class="text-lg md:text-2xl">
+          <p>
+            Estamos afinando los últimos detalles de nuestra página. Pronto
+            podrás conocer todo lo que tenemos preparado.
+          </p>
+        </div>
+      </div>
+      <Image
+        src={comingSoon}
+        alt="Background"
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+    </div>
+  </body>
 </html>
+
+<style>
+  .typewriter-text {
+    font-family: monospace; /* Typewriter-like font */
+    color: white;
+    overflow: hidden; /* Hides text outside the animated width */
+    white-space: nowrap; /* Prevents text from wrapping */
+    border-right: 0.15em solid orange; /* The blinking cursor */
+    width: 0; /* Starting width for the typing animation */
+    animation:
+      typing 2s steps(40, end) forwards,
+      /* Typing animation */ blink-cursor 0.75s step-end infinite; /* Blinking cursor animation */
+  }
+
+  /* Keyframes for the typing animation */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Keyframes for the blinking cursor animation */
+  @keyframes blink-cursor {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: orange;
+    }
+  }
+</style>
