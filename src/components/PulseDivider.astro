@@ -1,27 +1,65 @@
 ---
 /**
- * Divisor naranja con pulso (EKG) — SVG para nitidez a cualquier ancho.
+ * Divisor con pulso (EKG) según asset `pulso.png`.
+ * La línea se estira; el pulso mantiene su proporción para no aplanarse.
  */
 interface Props {
 	class?: string;
+	/** Posición del pulso sobre la línea */
+	align?: "start" | "end";
 }
 
-const { class: className = "" } = Astro.props;
+const { class: className = "", align = "start" } = Astro.props;
+
+/** Grosor visual compartido entre pulso y tramos de línea (px). */
+const strokePx = 3;
+
+/**
+ * Geometría del asset 1768×286:
+ * baseline y=195, pico ≈(924,2), valle ≈(1056,282)
+ */
+const pulsePath = "M0 195 L86 2 L218 282 L256 195";
+const baselineTop = "calc(195 / 286 * 100%)";
 ---
 
-<svg
-	class={className}
-	viewBox="0 0 1200 40"
-	fill="none"
-	xmlns="http://www.w3.org/2000/svg"
+<div
+	class:list={[
+		"flex w-full items-stretch text-current",
+		align === "end" && "flex-row-reverse",
+		className,
+	]}
 	aria-hidden="true"
-	preserveAspectRatio="none"
 >
-	<path
-		d="M0 20 H220 L250 4 L280 36 L310 20 H1200"
-		stroke="currentColor"
-		stroke-width="3"
-		stroke-linejoin="miter"
-		stroke-linecap="square"
-	/>
-</svg>
+	{/* Tramo inicial: separa el pulso ~120px del borde */}
+	<div class="relative w-[120px] shrink-0">
+		<span
+			class="absolute right-0 left-0 bg-current"
+			style={`top: ${baselineTop}; height: ${strokePx}px; transform: translateY(-50%)`}
+		/>
+	</div>
+
+	<svg
+		class="h-full w-auto shrink-0"
+		viewBox="0 0 256 286"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		preserveAspectRatio="xMidYMid meet"
+		overflow="visible"
+	>
+		<path
+			d={pulsePath}
+			stroke="currentColor"
+			stroke-width={strokePx}
+			stroke-linejoin="miter"
+			stroke-linecap="square"
+			vector-effect="non-scaling-stroke"
+		/>
+	</svg>
+
+	<div class="relative min-w-0 flex-1">
+		<span
+			class="absolute right-0 left-0 bg-current"
+			style={`top: ${baselineTop}; height: ${strokePx}px; transform: translateY(-50%)`}
+		/>
+	</div>
+</div>

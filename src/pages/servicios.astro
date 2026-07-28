@@ -1,124 +1,172 @@
 ---
-import { Image } from "astro:assets";
 import {
-	Activity,
-	FileText,
-	Gauge,
-	ScanSearch,
-	Thermometer,
+    Activity,
+    FileText,
+    Gauge,
+    ScanSearch,
+    Thermometer,
 } from "@lucide/astro";
 import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
-import heroServicios from "@/assets/photos/hero-servicios.webp";
+import PulseDivider from "@/components/PulseDivider.astro";
+import fotoReserva from "@/assets/photos/foto-reserva.webp";
 
 const services = [
-	{
-		title: "Inspección de Correas Transportadoras",
-		icon: ScanSearch,
-		items: [
-			"Inspección visual, termográfica y ultrasónica de correas.",
-			"Medición de espesores, evaluación de empalmes y estado de polines, poleas y raspadores.",
-			"Detección temprana de desgaste, cortes, desalineaciones y fallas estructurales.",
-		],
-	},
-	{
-		title: "Detección de Fallas y Desgaste",
-		icon: Activity,
-		items: [
-			"Inspección de piping, estanques y estructuras críticas.",
-			"Ensayos no destructivos: pernos, tintas penetrantes y técnicas complementarias.",
-			"Identificación de modos de falla y priorización de intervenciones.",
-		],
-	},
-	{
-		title: "Monitoreo de Condición y Confiabilidad",
-		icon: Gauge,
-		items: [
-			"Análisis de vibraciones, alineamiento láser y balanceo.",
-			"Seguimiento de condición de activos críticos.",
-			"Recomendaciones orientadas a confiabilidad operacional.",
-		],
-	},
-	{
-		title: "Termografía Infrarroja",
-		icon: Thermometer,
-		items: [
-			"Detección de puntos calientes por roce, lubricación o sobrecarga.",
-			"Inspección de tableros eléctricos y sistemas mecánicos.",
-			"Reportes con imágenes térmicas y criterios de severidad.",
-		],
-	},
+    {
+        highlight: "Inspección",
+        rest: "de Correas Transportadoras",
+        icon: ScanSearch,
+        columns: 1 as const,
+        items: [
+            "Inspección visual, termográfica y ultrasónica.",
+            "Medición de espesores y auditoría de empalmes.",
+            "Levantamiento de estado de cada polín, polea, raspador, chutes y placas guía, etc.",
+        ],
+    },
+    {
+        highlight: "Detección",
+        rest: "de Fallas y Desgaste",
+        icon: Activity,
+        columns: 1 as const,
+        items: [
+            "Medición de espesores en piping, estanques y elementos de desgaste.",
+            "Control de continuidad en pernos de anclaje, ejes y componentes críticos.",
+            "Aplicación de tintas penetrantes.",
+        ],
+    },
+    {
+        highlight: "Monitoreo",
+        rest: "de Condición y Confiabilidad",
+        icon: Gauge,
+        columns: 2 as const,
+        items: [
+            "Análisis de vibraciones.",
+            "Evaluación de modos de falla y criticidad.",
+            "Alineamiento láser.",
+            "Balanceo de equipos rotativos.",
+        ],
+    },
+    {
+        highlight: "Termografía",
+        rest: "Infrarroja",
+        icon: Thermometer,
+        columns: 1 as const,
+        items: [
+            "Detección de roce, deficiencias lubricatorias, etc en múltiples equipos y componentes mecánicos.",
+            "Detección de fallas y anomalías en tableros y contactos eléctricos.",
+            "Técnica complementaria como respaldo a otras técnicas de inspección y análisis.",
+        ],
+    },
+];
+
+const informeItems = [
+    "Datos del equipo inspeccionado.",
+    "Diagnóstico.",
+    "Recomendación según norma y tendencia.",
+    "Observaciones.",
+    "Imágenes recopiladas en terreno.",
+    "Datos, gráficos e imágenes tomadas del equipo y software utilizado según técnica empleada.",
 ];
 ---
 
 <Layout title="Servicios">
-	<PageHero
-		title="Servicios"
-		image={heroServicios}
-		imageAlt="Técnicos inspeccionando correa transportadora"
-	/>
+    <PageHero
+        title="Servicios"
+        image={fotoReserva}
+        imageAlt="Operación industrial con correas transportadoras"
+    />
 
-	<section class="bg-white px-4 py-14 sm:px-6 lg:px-8">
-		<div class="mx-auto flex max-w-3xl flex-col gap-16">
-			{
-				services.map((service) => {
-					const Icon = service.icon;
-					return (
-						<article class="animate-fade-in-up text-center">
-							<div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full border-2 border-brand text-brand">
-								<Icon size={28} stroke-width={1.75} />
-							</div>
-							<h2 class="font-display mb-4 text-xl font-bold text-brand sm:text-2xl">
-								{service.title}
-							</h2>
-							<ul class="mx-auto max-w-xl space-y-2 text-left text-sm leading-relaxed text-muted-foreground sm:text-base">
-								{service.items.map((item) => (
-									<li class="flex gap-2">
-										<span class="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
-										<span>{item}</span>
-									</li>
-								))}
-							</ul>
-						</article>
-					);
-				})
-			}
-		</div>
+    <section class="bg-white px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-[1200px]">
+            {
+                services.map((service, index) => {
+                    const Icon = service.icon;
+                    const pulseAlign = index % 2 === 1 ? "end" : "start";
+                    return (
+                        <>
+                            {index > 0 && (
+                                <div class="text-brand/45">
+                                    <PulseDivider
+                                        class="h-8 w-full sm:h-10"
+                                        align={pulseAlign}
+                                    />
+                                </div>
+                            )}
+                            <article class="animate-fade-in-up py-12 sm:py-14">
+                                <div class="text-center">
+                                    <div
+                                        class="mb-4 flex justify-center text-brand"
+                                        aria-hidden="true"
+                                    >
+                                        <Icon size={40} stroke-width={1.6} />
+                                    </div>
+                                    <h2 class="font-display mb-6 text-[2rem] font-bold tracking-tight leading-tight">
+                                        <span class="text-brand">
+                                            {service.highlight}
+                                        </span>{" "}
+                                        <span class="text-foreground">
+                                            {service.rest}
+                                        </span>
+                                    </h2>
+                                    <ul
+                                        class:list={[
+                                            "mx-auto max-w-xl text-left text-sm leading-relaxed text-foreground sm:text-base",
+                                            service.columns === 2
+                                                ? "grid gap-x-8 gap-y-3 sm:grid-cols-2 sm:max-w-2xl"
+                                                : "space-y-2.5",
+                                        ]}
+                                    >
+                                        {service.items.map((item) => (
+                                            <li class="flex gap-3">
+                                                <span
+                                                    class="mt-1.5 h-2.5 w-2 shrink-0 bg-brand"
+                                                    style="transform: skewX(-22deg)"
+                                                    aria-hidden="true"
+                                                />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </article>
+                        </>
+                    );
+                })
+            }
+        </div>
+    </section>
 
-		{/* Placeholders galería termografía / reportes */}
-		<div class="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-3 sm:gap-4">
-			{
-				Array.from({ length: 6 }).map((_, i) => (
-					<div
-						class:list={[
-							"aspect-video rounded-sm",
-							i < 3
-								? "bg-gradient-to-br from-muted to-border"
-								: "bg-gradient-to-br from-brand/80 via-purple-700/70 to-carbon",
-						]}
-						aria-hidden="true"
-					/>
-				))
-			}
-		</div>
-	</section>
+    <section class="bg-brand px-4 py-12 text-white sm:px-6 sm:py-14 lg:px-8">
+        <div class="mx-auto max-w-3xl">
+            <div
+                class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5"
+            >
+                <div class="shrink-0 text-white" aria-hidden="true">
+                    <FileText size={44} stroke-width={1.5} />
+                </div>
+                <p class="text-sm leading-relaxed sm:text-base">
+                    Cada inspección que realizamos deja como resultado un{" "}
+                    <strong class="font-bold"
+                        >informe ejecutivo y otro detallado</strong
+                    >{" "}
+                    dependiendo de lo que el cliente requiera, y respaldado con:
+                </p>
+            </div>
 
-	<section class="bg-brand px-4 py-12 text-brand-foreground sm:px-6 lg:px-8">
-		<div class="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center md:flex-row md:text-left">
-			<div
-				class="flex size-16 shrink-0 items-center justify-center rounded-full bg-white/15"
-				aria-hidden="true"
-			>
-				<FileText size={32} />
-			</div>
-			<div>
-				<h2 class="font-display mb-2 text-2xl font-bold">Informe Ejecutivo</h2>
-				<p class="text-sm leading-relaxed text-white/90 sm:text-base">
-					Entregamos reportes ejecutivos y detallados con diagnóstico, imágenes,
-					gráficos y recomendaciones accionables, alineados a normas y a la
-					realidad operativa de cada planta.
-				</p>
-			</div>
-		</div>
-	</section>
+            <ul class="divide-y divide-white/35">
+                {
+                    informeItems.map((item) => (
+                        <li class="flex gap-3 py-3 text-sm leading-relaxed sm:text-base">
+                            <span
+                                class="mt-1.5 h-2.5 w-2 shrink-0 bg-white"
+                                style="transform: skewX(-22deg)"
+                                aria-hidden="true"
+                            />
+                            <span>{item}</span>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </section>
 </Layout>
