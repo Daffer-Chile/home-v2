@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+import { Mail, MessageCircle, Send } from "@lucide/astro";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { CONTACT } from "@/constants/links";
+import paralelogramos from "@/assets/recursos/paralelogramos.png";
+---
+
+<Layout title="Contacto">
+	<PageHero title="Contacto" variant="shape" />
+
+	<section class="relative overflow-hidden bg-white px-4 py-14 sm:px-6 lg:px-8">
+		<Image
+			src={paralelogramos}
+			alt=""
+			aria-hidden="true"
+			class="pointer-events-none absolute top-16 right-4 hidden h-44 w-auto opacity-40 md:block lg:right-20"
+			widths={[200, 320]}
+			sizes="160px"
+		/>
+
+		<div class="mx-auto max-w-xl">
+			<h2 class="font-display mb-6 text-center text-xl font-bold text-foreground sm:text-2xl">
+				Realice sus consultas a:
+			</h2>
+
+			<ul class="mb-10 space-y-4 text-sm text-muted-foreground sm:text-base">
+				<li class="flex items-start gap-3">
+					<span class="mt-0.5 text-brand"><Mail size={20} /></span>
+					<div>
+						<a href={`mailto:${CONTACT.email}`} class="font-medium text-foreground hover:text-brand">
+							{CONTACT.email}
+						</a>
+						<p class="text-sm text-muted-foreground">
+							Un especialista te orientará según tu consulta.
+						</p>
+					</div>
+				</li>
+				<li class="flex items-start gap-3">
+					<span class="mt-0.5 text-brand"><MessageCircle size={20} /></span>
+					<a href={CONTACT.phoneHref} class="font-medium text-foreground hover:text-brand">
+						{CONTACT.phone}
+					</a>
+				</li>
+			</ul>
+
+			<div class="relative rounded-lg border border-border bg-white p-6 shadow-md sm:p-8">
+				<div
+					class="absolute -top-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-md bg-brand px-4 py-1.5 text-sm font-semibold text-white"
+				>
+					<MessageCircle size={16} />
+					Conversemos
+				</div>
+
+				<form id="contact-form" class="mt-4 space-y-5" novalidate>
+					<div>
+						<label for="nombre" class="mb-1.5 block text-sm font-medium text-foreground">
+							Nombre y/o Empresa
+						</label>
+						<input
+							type="text"
+							id="nombre"
+							name="nombre"
+							required
+							autocomplete="organization"
+							class="w-full rounded-md border border-border bg-muted/40 px-3 py-2.5 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
+						/>
+					</div>
+					<div>
+						<label for="mensaje" class="mb-1.5 block text-sm font-medium text-foreground">
+							Mensaje
+						</label>
+						<textarea
+							id="mensaje"
+							name="mensaje"
+							required
+							rows="5"
+							class="w-full resize-y rounded-md border border-border bg-muted/40 px-3 py-2.5 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
+						></textarea>
+					</div>
+					<button
+						type="submit"
+						class="font-display inline-flex w-full items-center justify-center gap-2 rounded-md bg-carbon px-4 py-3 text-sm font-semibold tracking-wide text-white uppercase transition hover:bg-carbon-soft"
+					>
+						enviar
+						<Send size={16} />
+					</button>
+					<p id="form-status" class="hidden text-center text-sm text-brand" role="status"></p>
+				</form>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const form = document.getElementById("contact-form") as HTMLFormElement | null;
+	const status = document.getElementById("form-status");
+
+	form?.addEventListener("submit", (event) => {
+		event.preventDefault();
+		if (!form.checkValidity()) {
+			form.reportValidity();
+			return;
+		}
+		if (status) {
+			status.textContent = "Gracias. Pronto habilitaremos el envío. Escríbenos a contacto@daffer.cl.";
+			status.classList.remove("hidden");
+		}
+		form.reset();
+	});
+</script>
