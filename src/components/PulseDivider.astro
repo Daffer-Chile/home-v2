@@ -4,13 +4,15 @@
  */
 interface Props {
 	class?: string;
+	/** Posición del pulso sobre la línea */
+	align?: "start" | "end";
 }
 
-const { class: className = "" } = Astro.props;
+const { class: className = "", align = "start" } = Astro.props;
 ---
 
 <svg
-	class={className}
+	class:list={[className, align === "end" && "-scale-x-100"]}
 	viewBox="0 0 1200 40"
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +22,7 @@ const { class: className = "" } = Astro.props;
 	<path
 		d="M0 20 H220 L250 4 L280 36 L310 20 H1200"
 		stroke="currentColor"
-		stroke-width="3"
+		stroke-width="2.5"
 		stroke-linejoin="miter"
 		stroke-linecap="square"
 	/>
