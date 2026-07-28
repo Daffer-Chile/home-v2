@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import pulso from "@/assets/recursos/pulso.png";
+import PulseDivider from "@/components/PulseDivider.astro";
 
 interface Props {
 	title: string;
@@ -36,10 +36,7 @@ const { title, image, imageAlt = "", variant = "image" } = Astro.props;
 					/>
 				</div>
 			) : (
-				<div
-					class="relative h-48 sm:h-56 md:h-64"
-					aria-hidden="true"
-				>
+				<div class="relative h-48 sm:h-56 md:h-64" aria-hidden="true">
 					<div
 						class="absolute inset-0 bg-brand"
 						style="clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%)"
@@ -49,14 +46,7 @@ const { title, image, imageAlt = "", variant = "image" } = Astro.props;
 		}
 	</div>
 
-	<div class="container-page px-4 sm:px-6 lg:px-8">
-		<Image
-			src={pulso}
-			alt=""
-			aria-hidden="true"
-			class="h-10 w-full object-contain object-left opacity-90 sm:h-12"
-			widths={[800, 1200, 1768]}
-			sizes="(max-width: 1200px) 100vw, 1200px"
-		/>
+	<div class="container-page px-4 text-brand sm:px-6 lg:px-8">
+		<PulseDivider class="h-8 w-full sm:h-10" />
 	</div>
 </section>
