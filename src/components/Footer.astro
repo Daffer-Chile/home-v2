@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+import { Facebook, Instagram, Linkedin } from "@lucide/astro";
+import { CONTACT, FOOTER_INFO } from "@/constants/links";
+import logo from "@/assets/brand/logo-light.png";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-carbon text-white">
+	<div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
+		<div>
+			<a href="/" aria-label="DAFFER — Inicio">
+				<Image
+					src={logo}
+					alt="DAFFER Ingeniería & Mantenimiento"
+					class="mb-3 h-12 w-auto object-contain"
+					widths={[240, 360]}
+					sizes="180px"
+				/>
+			</a>
+			<p class="text-sm text-white/70">Ingeniería & Mantenimiento</p>
+		</div>
+
+		<div>
+			<h3 class="font-display mb-4 text-sm font-bold tracking-wider uppercase text-brand">
+				Información
+			</h3>
+			<ul class="space-y-2 text-sm text-white/80">
+				{
+					FOOTER_INFO.map((item) => (
+						<li>
+							<a href={item.href} class="hover:text-brand">
+								{item.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div>
+			<h3 class="font-display mb-4 text-sm font-bold tracking-wider uppercase text-brand">
+				Servicio de Atención
+			</h3>
+			<p class="mb-4 text-sm text-white/80">{CONTACT.email}</p>
+			<div class="flex gap-3">
+				<a
+					href="#"
+					aria-label="LinkedIn"
+					class="flex size-9 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark"
+				>
+					<Linkedin size={16} />
+				</a>
+				<a
+					href="#"
+					aria-label="Facebook"
+					class="flex size-9 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark"
+				>
+					<Facebook size={16} />
+				</a>
+				<a
+					href="#"
+					aria-label="Instagram"
+					class="flex size-9 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark"
+				>
+					<Instagram size={16} />
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="border-t border-white/10">
+		<p class="mx-auto max-w-6xl px-4 py-5 text-center text-xs text-white/50 sm:px-6 lg:px-8">
+			© {year} DAFFER Ingeniería & Mantenimiento. Todos los derechos reservados.
+		</p>
+	</div>
+</footer>
