@@ -1,70 +1,72 @@
 ---
-import comingSoon from "@/assets/coming-soon.png";
-import "../styles/global.css";
 import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import heroHome from "@/assets/photos/hero-home.png";
+import pulso from "@/assets/recursos/pulso.png";
+import paralelogramos from "@/assets/recursos/paralelogramos.png";
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <title>DAFFER</title>
-  </head>
-  <body>
-    <div class="w-screen h-screen relative overflow-hidden">
-      <div
-        class="flex flex-col items-center justify-center text-white z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-6 text-center"
-      >
-        <div class="text-4xl md:text-6xl font-bold typewriter-container">
-          <h1 class="typewriter-text">Somos DAFFER</h1>
-        </div>
-        <div class="text-lg md:text-2xl">
-          <p>
-            Estamos afinando los últimos detalles de nuestra página. Pronto
-            podrás conocer todo lo que tenemos preparado.
-          </p>
-        </div>
-      </div>
-      <Image
-        src={comingSoon}
-        alt="Background"
-        class="w-full h-full object-cover"
-        loading="eager"
-      />
-    </div>
-  </body>
-</html>
+<Layout title="Inicio">
+	<section class="relative overflow-hidden bg-white">
+		<div class="mx-auto grid max-w-6xl items-stretch md:grid-cols-2">
+			<div
+				class="animate-fade-in-up flex flex-col justify-center px-4 py-16 sm:px-6 md:py-24 lg:px-8"
+			>
+				<h1
+					class="font-display text-4xl leading-[1.05] font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+				>
+					Técnica, Experiencia<br />
+					y Criterio para la
+					<span class="text-brand"> Industria</span>
+				</h1>
+			</div>
 
-<style>
-  .typewriter-text {
-    font-family: "Roboto Mono", sans-serif;
-    color: white;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 0.15em solid orange;
-    width: 0;
-    animation:
-      typing 2s steps(40, end) forwards,
-      blink-cursor 0.75s step-end infinite;
-  }
+			<div class="animate-fade-in animate-delay-100 relative min-h-64 md:min-h-[28rem]">
+				<Image
+					src={heroHome}
+					alt="Operación industrial minera con correas transportadoras"
+					class="absolute inset-0 h-full w-full object-cover clip-hero-diagonal"
+					widths={[640, 960, 1280]}
+					sizes="(max-width: 768px) 100vw, 50vw"
+					priority
+				/>
+			</div>
+		</div>
+	</section>
 
-  @keyframes typing {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
-  }
+	<section class="relative overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
+		<Image
+			src={paralelogramos}
+			alt=""
+			aria-hidden="true"
+			class="pointer-events-none absolute top-8 right-4 hidden h-40 w-auto opacity-40 md:block lg:right-16"
+			widths={[200, 320]}
+			sizes="160px"
+		/>
 
-  @keyframes blink-cursor {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: orange;
-    }
-  }
-</style>
+		<div class="animate-fade-in-up mx-auto max-w-3xl text-center">
+			<p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
+				DAFFER Ingeniería & Mantenimiento ofrece servicios de mantenimiento
+				predictivo, inspección técnica y confiabilidad operacional para activos
+				críticos industriales. Cuenta con un equipo con más de 20 años de
+				experiencia certificada en técnicas predictivas y entrega soluciones
+				personalizadas según la complejidad e historial operativo de cada planta.
+			</p>
+
+			<div class="mt-10 flex flex-col items-center gap-3">
+				<Image
+					src={pulso}
+					alt=""
+					aria-hidden="true"
+					class="h-6 w-40 object-contain"
+					widths={[200, 320]}
+					sizes="160px"
+				/>
+				<p class="font-display text-lg font-semibold text-foreground sm:text-xl">
+					+20 años de
+					<span class="text-brand">experiencia certificada</span>
+				</p>
+			</div>
+		</div>
+	</section>
+</Layout>
