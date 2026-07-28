@@ -8,21 +8,28 @@ const experiences = [
 		number: "1",
 		title: "Monitoreo de Condición",
 		subtitle: "Plantas Concentradoras, Minera Escondida",
-		body: "Placeholder — texto definitivo pendiente del documento Word. Alcance orientativo: monitoreo de condición en activos críticos de plantas concentradoras, con foco en confiabilidad y continuidad operacional.",
+		paragraphs: [
+			"El equipo de <strong>DAFFER</strong> aporta experiencia comprobada en el diagnóstico predictivo mediante variadas técnicas como: análisis de vibraciones, termografía y medición de espesores por ultrasonido. Contamos con amplia práctica en la inspección de activos críticos en minería, habiendo liderado campañas de monitoreo en molinos, motorreductores y bombas, además de realizar auditorías especializadas en el ciclo de vida de cintas transportadoras, desde el cambio de componentes hasta la evaluación de integridad de empalmes.",
+			"Los diagnósticos y recomendaciones generados permitieron mejorar la confiabilidad y disponibilidad de los activos, contribuyendo directamente a la continuidad operacional de la planta y aportando al hito de producción histórica en 2025 de MEL.",
+		],
 		tone: "brand" as const,
 	},
 	{
 		number: "2",
 		title: "Monitoreo de Condición e ITO",
 		subtitle: "Fundición Potrerillos, Codelco",
-		body: "Placeholder — texto definitivo pendiente del documento Word. Alcance orientativo: apoyo en monitoreo de condición e inspección técnica de obras (ITO) en entorno de fundición.",
+		paragraphs: [
+			"Contamos con experiencia técnica en servicios de Inspección Técnica de Obra (ITO) Mecánica en complejos de fundición, supervisando contratos críticos durante detenciones planificadas. Nuestro equipo integra el monitoreo de condición avanzado incluyendo alineamiento, balanceo dinámico y escaneo láser 3D (Faro Focus) para garantizar que cada intervención cumpla con los más altos estándares de calidad, fortaleciendo directamente la confiabilidad operacional y la vida útil de los activos.",
+		],
 		tone: "carbon" as const,
 	},
 	{
 		number: "3",
 		title: "ITO Mantenimiento",
 		subtitle: "Chancado y Correas, Minera Los Pelambres",
-		body: "Placeholder — texto definitivo pendiente del documento Word. Alcance orientativo: ITO de mantenimiento en sistemas de chancado y correas transportadoras.",
+		paragraphs: [
+			"Hemos brindado apoyo estratégico a áreas de Confiabilidad y Mejoramiento Mina, especializándonos en la identificación de brechas operativas y el levantamiento de oportunidades de mejora. A través de auditorías técnicas y la generación de recomendaciones de alto impacto, hemos contribuido directamente a la optimización del desempeño en sistemas de chancado y transporte, elevando los indicadores de disponibilidad y confiabilidad de los activos mediante una gestión de mantenimiento basada en datos.",
+		],
 		tone: "carbon" as const,
 	},
 ];
@@ -50,16 +57,23 @@ const experiences = [
 						item.tone === "brand" ? "bg-brand text-white" : "bg-carbon text-white",
 					]}
 				>
-					<div class="animate-fade-in-up mx-auto max-w-4xl">
-						<h3 class="font-display mb-2 text-2xl font-extrabold sm:text-3xl md:text-4xl">
-							{item.number}. {item.title}
-						</h3>
-						<p class="mb-4 text-base font-medium text-white/90 sm:text-lg">
-							{item.subtitle}
-						</p>
-						<p class="max-w-3xl text-sm leading-relaxed text-white/80 sm:text-base">
-							{item.body}
-						</p>
+					<div class="mx-auto flex max-w-4xl gap-4 sm:gap-6 md:gap-8">
+						<span class="font-display shrink-0 text-4xl font-extrabold sm:text-5xl md:text-6xl">
+							{item.number}.
+						</span>
+						<div class="min-w-0 pt-1">
+							<h3 class="font-display mb-1 text-xl font-extrabold sm:text-2xl md:text-3xl">
+								{item.title}
+							</h3>
+							<p class="mb-4 text-base font-medium text-white/90 sm:text-lg">
+								{item.subtitle}
+							</p>
+							<div class="space-y-4 text-sm leading-relaxed text-white/85 sm:text-base">
+								{item.paragraphs.map((paragraph) => (
+									<p set:html={paragraph} />
+								))}
+							</div>
+						</div>
 					</div>
 				</article>
 			))
