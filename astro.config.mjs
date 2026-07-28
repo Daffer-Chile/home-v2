@@ -7,6 +7,7 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 	},
+	// Prefetch al hover acelera navegación sin SPA/transitions
 	prefetch: {
 		prefetchAll: true,
 		defaultStrategy: "hover",
