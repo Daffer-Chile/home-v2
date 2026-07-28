@@ -27,6 +27,7 @@ const pathname = Astro.url.pathname;
 					return (
 						<a
 							href={page.href}
+							data-astro-prefetch
 							class:list={[
 								"font-display text-sm font-semibold tracking-wide uppercase transition-colors",
 								active ? "text-brand" : "text-foreground hover:text-brand",
@@ -62,6 +63,7 @@ const pathname = Astro.url.pathname;
 			PAGES.map((page) => (
 				<a
 					href={page.href}
+					data-astro-prefetch
 					class="font-display mobile-nav-link py-3 text-sm font-semibold tracking-wide uppercase text-foreground hover:text-brand"
 				>
 					{page.name}
