@@ -1,0 +1,68 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import heroServicios from "@/assets/photos/hero-servicios.png";
+
+const experiences = [
+	{
+		number: "1",
+		title: "Monitoreo de Condición",
+		subtitle: "Plantas Concentradoras, Minera Escondida",
+		body: "Placeholder — texto definitivo pendiente del documento Word. Alcance orientativo: monitoreo de condición en activos críticos de plantas concentradoras, con foco en confiabilidad y continuidad operacional.",
+		tone: "brand" as const,
+	},
+	{
+		number: "2",
+		title: "Monitoreo de Condición e ITO",
+		subtitle: "Fundición Potrerillos, Codelco",
+		body: "Placeholder — texto definitivo pendiente del documento Word. Alcance orientativo: apoyo en monitoreo de condición e inspección técnica de obras (ITO) en entorno de fundición.",
+		tone: "carbon" as const,
+	},
+	{
+		number: "3",
+		title: "ITO Mantenimiento",
+		subtitle: "Chancado y Correas, Minera Los Pelambres",
+		body: "Placeholder — texto definitivo pendiente del documento Word. Alcance orientativo: ITO de mantenimiento en sistemas de chancado y correas transportadoras.",
+		tone: "carbon" as const,
+	},
+];
+---
+
+<Layout title="Experiencia">
+	<PageHero
+		title="Experiencia"
+		image={heroServicios}
+		imageAlt="Equipo técnico en inspección industrial"
+	/>
+
+	<section class="bg-white px-4 pt-10 pb-6 text-center sm:px-6 lg:px-8">
+		<h2 class="font-display text-xl font-semibold text-foreground sm:text-2xl">
+			Experiencia equipo Daffer
+		</h2>
+	</section>
+
+	<section class="pb-16">
+		{
+			experiences.map((item) => (
+				<article
+					class:list={[
+						"px-4 py-12 sm:px-6 lg:px-8",
+						item.tone === "brand" ? "bg-brand text-white" : "bg-carbon text-white",
+					]}
+				>
+					<div class="animate-fade-in-up mx-auto max-w-4xl">
+						<h3 class="font-display mb-2 text-2xl font-extrabold sm:text-3xl md:text-4xl">
+							{item.number}. {item.title}
+						</h3>
+						<p class="mb-4 text-base font-medium text-white/90 sm:text-lg">
+							{item.subtitle}
+						</p>
+						<p class="max-w-3xl text-sm leading-relaxed text-white/80 sm:text-base">
+							{item.body}
+						</p>
+					</div>
+				</article>
+			))
+		}
+	</section>
+</Layout>
