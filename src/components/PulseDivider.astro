@@ -1,0 +1,27 @@
+---
+/**
+ * Divisor naranja con pulso (EKG) — SVG para nitidez a cualquier ancho.
+ */
+interface Props {
+	class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<svg
+	class={className}
+	viewBox="0 0 1200 40"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+	aria-hidden="true"
+	preserveAspectRatio="none"
+>
+	<path
+		d="M0 20 H220 L245 6 L270 34 L295 20 H1200"
+		stroke="currentColor"
+		stroke-width="2.5"
+		stroke-linejoin="round"
+		stroke-linecap="round"
+	/>
+</svg>

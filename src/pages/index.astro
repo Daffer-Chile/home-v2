@@ -49,13 +49,13 @@ import paralelogramos from "@/assets/recursos/paralelogramos.png";
 		</div>
 
 		{/* Divisor naranja / pulso bajo el hero */}
-		<div class="relative z-10 bg-white px-4 sm:px-6 lg:px-8">
+		<div class="relative z-10 border-t border-transparent bg-white px-4 pt-1 pb-2 sm:px-6 lg:px-8">
 			<div class="container-page">
 				<Image
 					src={pulso}
 					alt=""
 					aria-hidden="true"
-					class="h-10 w-full object-contain object-left sm:h-12"
+					class="h-8 w-full max-w-full object-fill object-left sm:h-10"
 					widths={[800, 1200, 1768]}
 					sizes="(max-width: 1200px) 100vw, 1200px"
 				/>
@@ -69,9 +69,9 @@ import paralelogramos from "@/assets/recursos/paralelogramos.png";
 			src={chevron}
 			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute top-0 left-1/2 h-auto w-[min(100%,900px)] -translate-x-1/2 opacity-70"
-			widths={[600, 900]}
-			sizes="900px"
+			class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-auto w-full max-w-[1000px] opacity-80"
+			widths={[600, 900, 1200]}
+			sizes="1000px"
 		/>
 
 		<Image
