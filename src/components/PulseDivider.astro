@@ -30,8 +30,8 @@ const baselineTop = "calc(195 / 286 * 100%)";
 	]}
 	aria-hidden="true"
 >
-	{/* Tramo inicial: separa el pulso ~120px del borde */}
-	<div class="relative w-[120px] shrink-0">
+	{/* Tramo inicial: separa el pulso del borde (120px en desktop) */}
+	<div class="relative w-10 shrink-0 sm:w-16 md:w-[120px]">
 		<span
 			class="absolute right-0 left-0 bg-current"
 			style={`top: ${baselineTop}; height: ${strokePx}px; transform: translateY(-50%)`}
