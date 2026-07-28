@@ -1,32 +1,48 @@
 ---
 import { Image } from "astro:assets";
 import { Facebook, Instagram, Linkedin } from "@lucide/astro";
-import { CONTACT, FOOTER_INFO } from "@/constants/links";
-import logo from "@/assets/brand/logo-light.png";
+import { FOOTER_INFO } from "@/constants/links";
+import logo from "@/assets/brand/logo.png";
 
 const year = new Date().getFullYear();
+
+const social = [
+	{ name: "LinkedIn", href: "#", Icon: Linkedin },
+	{ name: "Facebook", href: "#", Icon: Facebook },
+	{ name: "Instagram", href: "#", Icon: Instagram },
+] as const;
 ---
 
-<footer class="bg-carbon text-white">
-	<div class="container-page grid gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
-		<div>
-			<a href="/" aria-label="DAFFER — Inicio">
+<footer class="border-t border-border bg-white text-foreground">
+	<div
+		class="container-page flex flex-col gap-10 px-4 py-14 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-8 lg:px-8 lg:py-16"
+	>
+		{/* Marca + separador */}
+		<div class="flex items-center gap-6 md:gap-8">
+			<a href="/" class="shrink-0" aria-label="DAFFER — Inicio">
 				<Image
 					src={logo}
 					alt="DAFFER Ingeniería & Mantenimiento"
-					class="mb-3 h-12 w-auto object-contain"
+					class="h-12 w-auto object-contain sm:h-14"
 					widths={[240, 360]}
 					sizes="180px"
 				/>
+				<span class="mt-1 block text-xs text-foreground sm:text-sm">
+					Ingeniería & Mantenimiento
+				</span>
 			</a>
-			<p class="text-sm text-white/70">Ingeniería & Mantenimiento</p>
+			<div
+				class="hidden h-16 w-px shrink-0 bg-brand/70 sm:block md:h-20"
+				aria-hidden="true"
+			/>
 		</div>
 
-		<div>
-			<h3 class="font-display mb-4 text-sm font-bold tracking-wider uppercase text-brand">
+		{/* Información */}
+		<div class="min-w-0 md:flex-1 md:max-w-xs">
+			<h3 class="font-display mb-3 text-base font-bold text-foreground">
 				Información
 			</h3>
-			<ul class="space-y-2 text-sm text-white/80">
+			<ul class="space-y-2 text-sm text-foreground">
 				{
 					FOOTER_INFO.map((item) => (
 						<li>
@@ -39,40 +55,29 @@ const year = new Date().getFullYear();
 			</ul>
 		</div>
 
-		<div>
-			<h3 class="font-display mb-4 text-sm font-bold tracking-wider uppercase text-brand">
+		{/* Servicio de Atención */}
+		<div class="min-w-0 md:flex-1 md:max-w-xs">
+			<h3 class="font-display mb-1 text-base font-bold text-foreground">
 				Servicio de Atención
 			</h3>
-			<p class="mb-4 text-sm text-white/80">{CONTACT.email}</p>
+			<p class="mb-4 text-sm text-foreground">Horarios y correos</p>
 			<div class="flex gap-3">
-				<a
-					href="#"
-					aria-label="LinkedIn"
-					class="flex size-9 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark"
-				>
-					<Linkedin size={16} />
-				</a>
-				<a
-					href="#"
-					aria-label="Facebook"
-					class="flex size-9 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark"
-				>
-					<Facebook size={16} />
-				</a>
-				<a
-					href="#"
-					aria-label="Instagram"
-					class="flex size-9 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark"
-				>
-					<Instagram size={16} />
-				</a>
+				{
+					social.map(({ name, href, Icon }) => (
+						<a
+							href={href}
+							aria-label={name}
+							class="flex size-9 items-center justify-center rounded-md bg-brand text-white transition hover:bg-brand-dark"
+						>
+							<Icon size={16} />
+						</a>
+					))
+				}
 			</div>
 		</div>
 	</div>
 
-	<div class="border-t border-white/10">
-		<p class="container-page px-4 py-5 text-center text-xs text-white/50 sm:px-6 lg:px-8">
-			© {year} DAFFER Ingeniería & Mantenimiento. Todos los derechos reservados.
-		</p>
-	</div>
+	<p class="container-page px-4 pb-8 text-center text-xs text-muted-foreground sm:px-6 lg:px-8">
+		© {year} DAFFER Ingeniería & Mantenimiento. Todos los derechos reservados.
+	</p>
 </footer>
