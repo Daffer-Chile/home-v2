@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import heroNosotros from "@/assets/photos/hero-nosotros.png";
+import paralelogramos from "@/assets/recursos/paralelogramos.png";
+---
+
+<Layout title="Nosotros">
+	<PageHero
+		title="Nosotros"
+		image={heroNosotros}
+		imageAlt="Planta industrial minera iluminada de noche"
+	/>
+
+	<section class="relative overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
+		<Image
+			src={paralelogramos}
+			alt=""
+			aria-hidden="true"
+			class="pointer-events-none absolute top-10 right-6 hidden h-36 w-auto opacity-35 md:block"
+			widths={[200, 320]}
+			sizes="140px"
+		/>
+		<div class="animate-fade-in-up mx-auto max-w-3xl text-center">
+			<h2 class="font-display mb-6 text-3xl font-bold text-foreground">Presentación</h2>
+			<p class="mb-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+				DAFFER Ingeniería & Mantenimiento ofrece servicios de mantenimiento
+				predictivo, inspección técnica y confiabilidad operacional para activos
+				críticos industriales.
+			</p>
+			<p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
+				Contamos con más de 20 años de experiencia certificada en técnicas
+				predictivas y entregamos soluciones personalizadas según la complejidad e
+				historial operativo de cada planta.
+			</p>
+		</div>
+	</section>
+
+	<section class="bg-brand px-4 py-16 text-brand-foreground sm:px-6 lg:px-8">
+		<div class="animate-fade-in-up mx-auto max-w-3xl text-center">
+			<h2 class="font-display mb-6 text-3xl font-bold">Propuesta de valor</h2>
+			<p class="text-base leading-relaxed text-white/95 sm:text-lg">
+				La eficiencia se construye en cada decisión que afecta la continuidad de
+				producción. Nuestra visión estratégica es transformar la confiabilidad de
+				los activos en resultados medibles, con criterio técnico, seguridad y
+				metodología comprobada en entornos de alta exigencia.
+			</p>
+		</div>
+	</section>
+
+	<section class="bg-muted px-4 py-16 sm:px-6 lg:px-8">
+		<div class="animate-fade-in-up mx-auto max-w-3xl text-center">
+			<h2 class="font-display mb-6 text-3xl font-bold text-foreground">Equipo Técnico</h2>
+			<p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
+				Nuestro equipo suma más de 20 años de experiencia en mantenimiento
+				mecánico, monitoreo de condición y ensayos no destructivos en ambientes de
+				alto estándar, incluyendo gran minería. Priorizamos la seguridad de
+				personas y equipos, con un enfoque integral del ciclo de vida de los
+				activos.
+			</p>
+		</div>
+	</section>
+</Layout>
