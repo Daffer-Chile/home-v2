@@ -4,48 +4,53 @@ import { BadgeCheck } from "@lucide/astro";
 import Layout from "@/layouts/Layout.astro";
 import PulseDivider from "@/components/PulseDivider.astro";
 import heroHome from "@/assets/photos/hero-home.png";
-import chevron from "@/assets/recursos/chevron-light.png";
+import chevron from "@/assets/recursos/chevron.png";
 import paralelogramos from "@/assets/recursos/paralelogramos.png";
 ---
 
 <Layout title="Inicio">
-	<section class="relative overflow-hidden bg-white">
-		{/* Imagen hero con corte diagonal — desktop */}
-		<div
-			class="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block"
-			aria-hidden="true"
-		>
-			<Image
-				src={heroHome}
-				alt=""
-				class="h-full w-full object-cover clip-hero-diagonal"
-				widths={[800, 1200, 1600]}
-				sizes="62vw"
-				priority
-			/>
-		</div>
-
-		<div class="container-page relative px-4 sm:px-6 lg:px-8">
-			<div class="flex min-h-[22rem] max-w-md flex-col justify-center py-16 sm:min-h-[26rem] md:min-h-[28rem] md:py-20">
-				<h1
-					class="font-display text-left text-4xl leading-[1.05] font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
-				>
-					Técnica, Experiencia<br />
-					y Criterio para la<br />
-					<span class="text-brand">Industria</span>
-				</h1>
+	<section class="relative bg-white">
+		{/* Bloque visual del hero — overflow contenido aquí para no desbordar el divisor */}
+		<div class="relative overflow-hidden">
+			{/* Imagen hero con corte diagonal — desktop */}
+			<div
+				class="pointer-events-none absolute inset-y-0 right-0 hidden w-[min(62%,720px)] overflow-hidden md:block lg:w-[58%]"
+				aria-hidden="true"
+			>
+				<Image
+					src={heroHome}
+					alt=""
+					class="h-full w-full max-w-none object-cover clip-hero-diagonal"
+					widths={[800, 1200, 1600]}
+					sizes="58vw"
+					priority
+				/>
 			</div>
-		</div>
 
-		{/* Imagen mobile (sin clip) */}
-		<div class="md:hidden">
-			<Image
-				src={heroHome}
-				alt="Operación industrial minera con correas transportadoras"
-				class="h-56 w-full object-cover sm:h-72"
-				widths={[640, 960]}
-				sizes="100vw"
-			/>
+			<div class="container-page relative px-4 sm:px-6 lg:px-8">
+				<div
+					class="flex min-h-[24rem] max-w-md flex-col justify-center py-20 sm:min-h-[28rem] md:min-h-[32rem] md:py-24"
+				>
+					<h1
+						class="font-display text-left text-4xl leading-[1.05] font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+					>
+						Técnica, Experiencia<br />
+						y Criterio para la<br />
+						<span class="text-brand">Industria</span>
+					</h1>
+				</div>
+			</div>
+
+			{/* Imagen mobile (sin clip) */}
+			<div class="md:hidden">
+				<Image
+					src={heroHome}
+					alt="Operación industrial minera con correas transportadoras"
+					class="h-56 w-full object-cover sm:h-72"
+					widths={[640, 960]}
+					sizes="100vw"
+				/>
+			</div>
 		</div>
 
 		{/* Divisor naranja / pulso bajo el hero */}
@@ -56,28 +61,29 @@ import paralelogramos from "@/assets/recursos/paralelogramos.png";
 		</div>
 	</section>
 
-	<section class="relative overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
-		{/* Recurso 3 — chevron de fondo */}
+	<section class="relative overflow-hidden bg-white px-4 py-24 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
+		{/* Recurso 3 — chevron normal (gris vía CSS sobre el asset original) */}
 		<Image
 			src={chevron}
 			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute inset-x-0 -top-4 mx-auto h-auto w-full max-w-[1100px] opacity-100 md:-top-8"
-			widths={[600, 900, 1200]}
-			sizes="1000px"
+			class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-full max-h-none w-full max-w-[1200px] object-cover object-top opacity-[0.14] brightness-0"
+			widths={[800, 1200]}
+			sizes="1200px"
 		/>
 
+		{/* Paralelogramos naranja — más grandes */}
 		<Image
 			src={paralelogramos}
 			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute top-10 right-4 hidden h-40 w-auto opacity-50 md:block lg:right-[max(1rem,calc((100%-1200px)/2+1rem))]"
-			widths={[200, 320]}
-			sizes="160px"
+			class="pointer-events-none absolute top-1/2 right-0 hidden h-72 w-auto -translate-y-1/2 opacity-80 md:block lg:right-[max(0px,calc((100%-1200px)/2))] lg:h-80 xl:h-96"
+			widths={[280, 400, 520]}
+			sizes="320px"
 		/>
 
-		<div class="container-page relative max-w-[42rem] text-left">
-			<p class="text-base leading-relaxed text-foreground sm:text-lg">
+		<div class="container-page relative">
+			<p class="max-w-[42rem] text-left text-base leading-relaxed text-foreground sm:text-lg">
 				<strong>DAFFER Ingeniería & Mantenimiento</strong> ofrece servicios de
 				<strong> mantenimiento predictivo</strong>,
 				<strong> inspección técnica</strong> y
@@ -89,9 +95,9 @@ import paralelogramos from "@/assets/recursos/paralelogramos.png";
 				historial operativo de cada planta.
 			</p>
 
-			<div class="mt-10 flex items-center gap-3">
+			<div class="mt-14 flex items-center justify-center gap-3">
 				<span class="text-brand" aria-hidden="true">
-					<BadgeCheck size={28} stroke-width={2} />
+					<BadgeCheck size={28} stroke-width={2.25} />
 				</span>
 				<p class="font-display text-lg font-bold text-foreground sm:text-xl">
 					+20 años de

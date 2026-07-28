@@ -100,7 +100,7 @@ h4 {
 
 /* Corte diagonal del hero: más cerrado arriba, más abierto abajo (mockup) */
 .clip-hero-diagonal {
-	clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+	clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 @media (max-width: 767px) {
