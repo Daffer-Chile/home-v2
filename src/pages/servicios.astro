@@ -1,0 +1,124 @@
+---
+import { Image } from "astro:assets";
+import {
+	Activity,
+	FileText,
+	Gauge,
+	ScanSearch,
+	Thermometer,
+} from "@lucide/astro";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import heroServicios from "@/assets/photos/hero-servicios.webp";
+
+const services = [
+	{
+		title: "Inspección de Correas Transportadoras",
+		icon: ScanSearch,
+		items: [
+			"Inspección visual, termográfica y ultrasónica de correas.",
+			"Medición de espesores, evaluación de empalmes y estado de polines, poleas y raspadores.",
+			"Detección temprana de desgaste, cortes, desalineaciones y fallas estructurales.",
+		],
+	},
+	{
+		title: "Detección de Fallas y Desgaste",
+		icon: Activity,
+		items: [
+			"Inspección de piping, estanques y estructuras críticas.",
+			"Ensayos no destructivos: pernos, tintas penetrantes y técnicas complementarias.",
+			"Identificación de modos de falla y priorización de intervenciones.",
+		],
+	},
+	{
+		title: "Monitoreo de Condición y Confiabilidad",
+		icon: Gauge,
+		items: [
+			"Análisis de vibraciones, alineamiento láser y balanceo.",
+			"Seguimiento de condición de activos críticos.",
+			"Recomendaciones orientadas a confiabilidad operacional.",
+		],
+	},
+	{
+		title: "Termografía Infrarroja",
+		icon: Thermometer,
+		items: [
+			"Detección de puntos calientes por roce, lubricación o sobrecarga.",
+			"Inspección de tableros eléctricos y sistemas mecánicos.",
+			"Reportes con imágenes térmicas y criterios de severidad.",
+		],
+	},
+];
+---
+
+<Layout title="Servicios">
+	<PageHero
+		title="Servicios"
+		image={heroServicios}
+		imageAlt="Técnicos inspeccionando correa transportadora"
+	/>
+
+	<section class="bg-white px-4 py-14 sm:px-6 lg:px-8">
+		<div class="mx-auto flex max-w-3xl flex-col gap-16">
+			{
+				services.map((service) => {
+					const Icon = service.icon;
+					return (
+						<article class="animate-fade-in-up text-center">
+							<div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full border-2 border-brand text-brand">
+								<Icon size={28} stroke-width={1.75} />
+							</div>
+							<h2 class="font-display mb-4 text-xl font-bold text-brand sm:text-2xl">
+								{service.title}
+							</h2>
+							<ul class="mx-auto max-w-xl space-y-2 text-left text-sm leading-relaxed text-muted-foreground sm:text-base">
+								{service.items.map((item) => (
+									<li class="flex gap-2">
+										<span class="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
+										<span>{item}</span>
+									</li>
+								))}
+							</ul>
+						</article>
+					);
+				})
+			}
+		</div>
+
+		{/* Placeholders galería termografía / reportes */}
+		<div class="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-3 sm:gap-4">
+			{
+				Array.from({ length: 6 }).map((_, i) => (
+					<div
+						class:list={[
+							"aspect-video rounded-sm",
+							i < 3
+								? "bg-gradient-to-br from-muted to-border"
+								: "bg-gradient-to-br from-brand/80 via-purple-700/70 to-carbon",
+						]}
+						aria-hidden="true"
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="bg-brand px-4 py-12 text-brand-foreground sm:px-6 lg:px-8">
+		<div class="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center md:flex-row md:text-left">
+			<div
+				class="flex size-16 shrink-0 items-center justify-center rounded-full bg-white/15"
+				aria-hidden="true"
+			>
+				<FileText size={32} />
+			</div>
+			<div>
+				<h2 class="font-display mb-2 text-2xl font-bold">Informe Ejecutivo</h2>
+				<p class="text-sm leading-relaxed text-white/90 sm:text-base">
+					Entregamos reportes ejecutivos y detallados con diagnóstico, imágenes,
+					gráficos y recomendaciones accionables, alineados a normas y a la
+					realidad operativa de cada planta.
+				</p>
+			</div>
+		</div>
+	</section>
+</Layout>

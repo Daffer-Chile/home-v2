@@ -1,70 +1,116 @@
 ---
-import comingSoon from "@/assets/coming-soon.png";
-import "../styles/global.css";
 import { Image } from "astro:assets";
+import { BadgeCheck } from "@lucide/astro";
+import Layout from "@/layouts/Layout.astro";
+import PulseDivider from "@/components/PulseDivider.astro";
+import heroHome from "@/assets/photos/hero-home.webp";
+import chevron from "@/assets/recursos/chevron.png";
+import paralelogramos from "@/assets/recursos/paralelogramos.png";
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <title>DAFFER</title>
-  </head>
-  <body>
-    <div class="w-screen h-screen relative overflow-hidden">
-      <div
-        class="flex flex-col items-center justify-center text-white z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-6 text-center"
-      >
-        <div class="text-4xl md:text-6xl font-bold typewriter-container">
-          <h1 class="typewriter-text">Somos DAFFER</h1>
+<Layout title="Inicio">
+    <section class="relative bg-white">
+        {/* Hero contenido dentro de 1200px — evita desborde al viewport */}
+        <div
+            class="container-page relative overflow-hidden px-4 sm:px-6 lg:px-8"
+        >
+            {/* Imagen con corte diagonal, anclada al contenedor */}
+            <div
+                class="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] overflow-hidden md:block"
+                aria-hidden="true"
+            >
+                <Image
+                    src={heroHome}
+                    alt=""
+                    class="h-full w-full object-cover clip-hero-diagonal"
+                    widths={[700, 1000, 1200]}
+                    sizes="(max-width: 1200px) 55vw, 660px"
+                    priority
+                />
+            </div>
+
+            <div
+                class="relative flex min-h-[24rem] max-w-md flex-col justify-center py-20 sm:min-h-[28rem] md:min-h-[32rem] md:py-24"
+            >
+                <h1
+                    class="font-display text-left text-4xl leading-[1.05] font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+                >
+                    Técnica, Experiencia<br />
+                    y Criterio para la<br />
+                    <span class="text-brand">Industria</span>
+                </h1>
+            </div>
+
+            {/* Imagen mobile */}
+            <div class="-mx-4 mt-2 md:hidden sm:-mx-6">
+                <Image
+                    src={heroHome}
+                    alt="Operación industrial minera con correas transportadoras"
+                    class="h-56 w-full object-cover sm:h-72"
+                    widths={[640, 960]}
+                    sizes="100vw"
+                />
+            </div>
         </div>
-        <div class="text-lg md:text-2xl">
-          <p>
-            Estamos afinando los últimos detalles de nuestra página. Pronto
-            podrás conocer todo lo que tenemos preparado.
-          </p>
+
+        {/* Divisor naranja */}
+        <div class="px-4 pt-2 pb-3 sm:px-6 lg:px-8">
+            <div class="container-page text-brand">
+                <PulseDivider class="h-8 w-full sm:h-10" />
+            </div>
         </div>
-      </div>
-      <Image
-        src={comingSoon}
-        alt="Background"
-        class="w-full h-full object-cover"
-        loading="eager"
-      />
-    </div>
-  </body>
-</html>
+    </section>
 
-<style>
-  .typewriter-text {
-    font-family: "Roboto Mono", sans-serif;
-    color: white;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 0.15em solid orange;
-    width: 0;
-    animation:
-      typing 2s steps(40, end) forwards,
-      blink-cursor 0.75s step-end infinite;
-  }
+    <section
+        class="relative overflow-hidden bg-white px-4 py-24 sm:px-6 sm:py-28 lg:px-8 lg:py-32 h-[700px]"
+    >
+        {/* Chevron — color original #fbfafa */}
+        <Image
+            src={chevron}
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-full w-full max-w-[1200px] object-cover object-top"
+            widths={[800, 1200]}
+            sizes="1200px"
+        />
 
-  @keyframes typing {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
-  }
+        {/* Paralelogramos — un poco más chicos */}
+        <Image
+            src={paralelogramos}
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none absolute top-1/2 right-0 hidden h-52 w-auto -translate-y-1/2 opacity-90 md:block lg:right-[max(0px,calc((100%-1200px)/2))] lg:h-60"
+            widths={[220, 320]}
+            sizes="240px"
+        />
 
-  @keyframes blink-cursor {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: orange;
-    }
-  }
-</style>
+        <div class="container-page relative px-28">
+            <p
+                class="text-left text-base leading-relaxed text-foreground sm:text-lg"
+            >
+                <strong>DAFFER Ingeniería & Mantenimiento</strong> ofrece servicios
+                de
+                <strong> mantenimiento predictivo</strong>,
+                <strong> inspección técnica</strong> y
+                <strong> confiabilidad operacional</strong> para activos críticos
+                industriales. Cuenta con un equipo con
+                <strong> más de 20 años de experiencia certificada</strong> en técnicas
+                predictivas y entrega
+                <strong> soluciones personalizadas</strong> según la complejidad
+                e historial operativo de cada planta.
+            </p>
+
+            <div class="mt-14 flex items-center justify-center gap-3">
+                <span class="text-brand" aria-hidden="true">
+                    <BadgeCheck size={28} stroke-width={2.25} />
+                </span>
+                <p
+                    class="font-display text-lg font-bold text-foreground sm:text-xl"
+                >
+                    +20 años de
+                    <span class="text-brand"> experiencia certificada</span>
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>

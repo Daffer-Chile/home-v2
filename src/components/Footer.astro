@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+import { Facebook, Instagram, Linkedin } from "@lucide/astro";
+import { FOOTER_INFO } from "@/constants/links";
+import logo from "@/assets/brand/logo.png";
+
+const year = new Date().getFullYear();
+
+const social = [
+	{ name: "LinkedIn", href: "#", Icon: Linkedin },
+	{ name: "Facebook", href: "#", Icon: Facebook },
+	{ name: "Instagram", href: "#", Icon: Instagram },
+] as const;
+---
+
+<footer class="border-t border-border bg-white text-foreground">
+	<div
+		class="container-page flex flex-col gap-10 px-4 py-14 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-8 lg:px-8 lg:py-16"
+	>
+		{/* Marca + separador */}
+		<div class="flex items-center gap-6 md:gap-8">
+			<a href="/" class="shrink-0" aria-label="DAFFER — Inicio">
+				<Image
+					src={logo}
+					alt="DAFFER Ingeniería & Mantenimiento"
+					class="h-12 w-auto object-contain sm:h-14"
+					widths={[240, 360]}
+					sizes="180px"
+				/>
+				<span class="mt-1 block text-xs text-foreground sm:text-sm">
+					Ingeniería & Mantenimiento
+				</span>
+			</a>
+			<div
+				class="hidden h-16 w-px shrink-0 bg-brand/70 sm:block md:h-20"
+				aria-hidden="true"
+			/>
+		</div>
+
+		{/* Información */}
+		<div class="min-w-0 md:flex-1 md:max-w-xs">
+			<h3 class="font-display mb-3 text-base font-bold text-foreground">
+				Información
+			</h3>
+			<ul class="space-y-2 text-sm text-foreground">
+				{
+					FOOTER_INFO.map((item) => (
+						<li>
+							<a href={item.href} class="hover:text-brand">
+								{item.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		{/* Servicio de Atención */}
+		<div class="min-w-0 md:flex-1 md:max-w-xs">
+			<h3 class="font-display mb-1 text-base font-bold text-foreground">
+				Servicio de Atención
+			</h3>
+			<p class="mb-4 text-sm text-foreground">Horarios y correos</p>
+			<div class="flex gap-3">
+				{
+					social.map(({ name, href, Icon }) => (
+						<a
+							href={href}
+							aria-label={name}
+							class="flex size-9 items-center justify-center rounded-md bg-brand text-white transition hover:bg-brand-dark"
+						>
+							<Icon size={16} />
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</div>
+
+	<p class="container-page px-4 pb-8 text-center text-xs text-muted-foreground sm:px-6 lg:px-8">
+		© {year} DAFFER Ingeniería & Mantenimiento. Todos los derechos reservados.
+	</p>
+</footer>

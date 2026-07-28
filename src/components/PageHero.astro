@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import PulseDivider from "@/components/PulseDivider.astro";
+
+interface Props {
+	title: string;
+	image?: ImageMetadata;
+	imageAlt?: string;
+	variant?: "image" | "shape";
+}
+
+const { title, image, imageAlt = "", variant = "image" } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-white">
+	<div
+		class="container-page grid items-center gap-8 px-4 pt-10 pb-6 sm:px-6 md:grid-cols-2 md:pt-14 lg:px-8"
+	>
+		<div>
+			<h1 class="font-display text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl md:text-7xl">
+				{title}
+			</h1>
+		</div>
+
+		{
+			variant === "image" && image ? (
+				<div class="overflow-hidden rounded-sm shadow-lg">
+					<Image
+						src={image}
+						alt={imageAlt}
+						class="h-48 w-full object-cover sm:h-56 md:h-64"
+						widths={[640, 960, 1280]}
+						sizes="(max-width: 768px) 100vw, 50vw"
+						priority
+					/>
+				</div>
+			) : (
+				<div class="relative h-48 sm:h-56 md:h-64" aria-hidden="true">
+					<div
+						class="absolute inset-0 bg-brand"
+						style="clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%)"
+					/>
+				</div>
+			)
+		}
+	</div>
+
+	<div class="container-page px-4 text-brand sm:px-6 lg:px-8">
+		<PulseDivider class="h-8 w-full sm:h-10" />
+	</div>
+</section>
