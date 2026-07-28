@@ -15,7 +15,7 @@ const { title, image, imageAlt = "", variant = "image" } = Astro.props;
 
 <section class="relative overflow-hidden bg-white">
 	<div
-		class="mx-auto grid max-w-6xl items-center gap-8 px-4 pt-10 pb-6 sm:px-6 md:grid-cols-2 md:pt-14 lg:px-8"
+		class="container-page grid items-center gap-8 px-4 pt-10 pb-6 sm:px-6 md:grid-cols-2 md:pt-14 lg:px-8"
 	>
 		<div>
 			<h1 class="font-display text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl md:text-7xl">
@@ -49,14 +49,14 @@ const { title, image, imageAlt = "", variant = "image" } = Astro.props;
 		}
 	</div>
 
-	<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+	<div class="container-page px-4 sm:px-6 lg:px-8">
 		<Image
 			src={pulso}
 			alt=""
 			aria-hidden="true"
-			class="mx-auto h-8 w-full max-w-md object-contain object-center opacity-90"
-			widths={[400, 700]}
-			sizes="400px"
+			class="h-10 w-full object-contain object-left opacity-90 sm:h-12"
+			widths={[800, 1200, 1768]}
+			sizes="(max-width: 1200px) 100vw, 1200px"
 		/>
 	</div>
 </section>

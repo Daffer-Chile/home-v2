@@ -1,68 +1,108 @@
 ---
 import { Image } from "astro:assets";
+import { BadgeCheck } from "@lucide/astro";
 import Layout from "@/layouts/Layout.astro";
 import heroHome from "@/assets/photos/hero-home.png";
 import pulso from "@/assets/recursos/pulso.png";
+import chevron from "@/assets/recursos/chevron-light.png";
 import paralelogramos from "@/assets/recursos/paralelogramos.png";
 ---
 
 <Layout title="Inicio">
 	<section class="relative overflow-hidden bg-white">
-		<div class="mx-auto grid max-w-6xl items-stretch md:grid-cols-2">
-			<div class="flex flex-col justify-center px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+		{/* Imagen hero con corte diagonal — desktop */}
+		<div
+			class="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block"
+			aria-hidden="true"
+		>
+			<Image
+				src={heroHome}
+				alt=""
+				class="h-full w-full object-cover clip-hero-diagonal"
+				widths={[800, 1200, 1600]}
+				sizes="62vw"
+				priority
+			/>
+		</div>
+
+		<div class="container-page relative px-4 sm:px-6 lg:px-8">
+			<div class="flex min-h-[22rem] max-w-md flex-col justify-center py-16 sm:min-h-[26rem] md:min-h-[28rem] md:py-20">
 				<h1
-					class="font-display text-4xl leading-[1.05] font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+					class="font-display text-left text-4xl leading-[1.05] font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
 				>
 					Técnica, Experiencia<br />
-					y Criterio para la
-					<span class="text-brand"> Industria</span>
+					y Criterio para la<br />
+					<span class="text-brand">Industria</span>
 				</h1>
 			</div>
+		</div>
 
-			<div class="min-h-64 md:min-h-[28rem]">
+		{/* Imagen mobile (sin clip) */}
+		<div class="md:hidden">
+			<Image
+				src={heroHome}
+				alt="Operación industrial minera con correas transportadoras"
+				class="h-56 w-full object-cover sm:h-72"
+				widths={[640, 960]}
+				sizes="100vw"
+			/>
+		</div>
+
+		{/* Divisor naranja / pulso bajo el hero */}
+		<div class="relative z-10 bg-white px-4 sm:px-6 lg:px-8">
+			<div class="container-page">
 				<Image
-					src={heroHome}
-					alt="Operación industrial minera con correas transportadoras"
-					class="h-full min-h-64 w-full object-cover md:min-h-[28rem] clip-hero-diagonal"
-					widths={[640, 960, 1280]}
-					sizes="(max-width: 768px) 100vw, 50vw"
-					priority
+					src={pulso}
+					alt=""
+					aria-hidden="true"
+					class="h-10 w-full object-contain object-left sm:h-12"
+					widths={[800, 1200, 1768]}
+					sizes="(max-width: 1200px) 100vw, 1200px"
 				/>
 			</div>
 		</div>
 	</section>
 
 	<section class="relative overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
+		{/* Recurso 3 — chevron de fondo */}
+		<Image
+			src={chevron}
+			alt=""
+			aria-hidden="true"
+			class="pointer-events-none absolute top-0 left-1/2 h-auto w-[min(100%,900px)] -translate-x-1/2 opacity-70"
+			widths={[600, 900]}
+			sizes="900px"
+		/>
+
 		<Image
 			src={paralelogramos}
 			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute top-8 right-4 hidden h-40 w-auto opacity-40 md:block lg:right-16"
+			class="pointer-events-none absolute top-10 right-4 hidden h-40 w-auto opacity-50 md:block lg:right-[max(1rem,calc((100%-1200px)/2+1rem))]"
 			widths={[200, 320]}
 			sizes="160px"
 		/>
 
-		<div class="mx-auto max-w-3xl text-center">
-			<p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
-				DAFFER Ingeniería & Mantenimiento ofrece servicios de mantenimiento
-				predictivo, inspección técnica y confiabilidad operacional para activos
-				críticos industriales. Cuenta con un equipo con más de 20 años de
-				experiencia certificada en técnicas predictivas y entrega soluciones
-				personalizadas según la complejidad e historial operativo de cada planta.
+		<div class="container-page relative max-w-[42rem] text-left">
+			<p class="text-base leading-relaxed text-foreground sm:text-lg">
+				<strong>DAFFER Ingeniería & Mantenimiento</strong> ofrece servicios de
+				<strong> mantenimiento predictivo</strong>,
+				<strong> inspección técnica</strong> y
+				<strong> confiabilidad operacional</strong> para activos críticos
+				industriales. Cuenta con un equipo con
+				<strong> más de 20 años de experiencia certificada</strong> en técnicas
+				predictivas y entrega
+				<strong> soluciones personalizadas</strong> según la complejidad e
+				historial operativo de cada planta.
 			</p>
 
-			<div class="mt-10 flex flex-col items-center gap-3">
-				<Image
-					src={pulso}
-					alt=""
-					aria-hidden="true"
-					class="h-6 w-40 object-contain"
-					widths={[200, 320]}
-					sizes="160px"
-				/>
-				<p class="font-display text-lg font-semibold text-foreground sm:text-xl">
+			<div class="mt-10 flex items-center gap-3">
+				<span class="text-brand" aria-hidden="true">
+					<BadgeCheck size={28} stroke-width={2} />
+				</span>
+				<p class="font-display text-lg font-bold text-foreground sm:text-xl">
 					+20 años de
-					<span class="text-brand">experiencia certificada</span>
+					<span class="text-brand"> experiencia certificada</span>
 				</p>
 			</div>
 		</div>
