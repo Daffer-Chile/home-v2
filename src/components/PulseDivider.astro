@@ -11,12 +11,15 @@ interface Props {
 
 const { class: className = "", align = "start" } = Astro.props;
 
+/** Grosor visual compartido entre pulso y tramos de línea (px). */
+const strokePx = 3;
+
 /**
  * Geometría del asset 1768×286:
  * baseline y=195, pico ≈(924,2), valle ≈(1056,282)
- * Recorte local del pulso con stubs cortos a cada lado.
  */
-const pulsePath = "M0 195 H18 L104 2 L236 282 L274 195 H292";
+const pulsePath = "M0 195 L86 2 L218 282 L256 195";
+const baselineTop = "calc(195 / 286 * 100%)";
 ---
 
 <div
@@ -27,26 +30,36 @@ const pulsePath = "M0 195 H18 L104 2 L236 282 L274 195 H292";
 	]}
 	aria-hidden="true"
 >
+	{/* Tramo inicial: separa el pulso ~120px del borde */}
+	<div class="relative w-[120px] shrink-0">
+		<span
+			class="absolute right-0 left-0 bg-current"
+			style={`top: ${baselineTop}; height: ${strokePx}px; transform: translateY(-50%)`}
+		/>
+	</div>
+
 	<svg
 		class="h-full w-auto shrink-0"
-		viewBox="0 0 292 286"
+		viewBox="0 0 256 286"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		preserveAspectRatio="xMidYMid meet"
+		overflow="visible"
 	>
 		<path
 			d={pulsePath}
 			stroke="currentColor"
-			stroke-width="8"
+			stroke-width={strokePx}
 			stroke-linejoin="miter"
 			stroke-linecap="square"
+			vector-effect="non-scaling-stroke"
 		/>
 	</svg>
 
 	<div class="relative min-w-0 flex-1">
 		<span
-			class="absolute right-0 left-0 h-[0.14em] min-h-[2px] bg-current"
-			style="top: calc(195 / 286 * 100%); transform: translateY(-50%)"
+			class="absolute right-0 left-0 bg-current"
+			style={`top: ${baselineTop}; height: ${strokePx}px; transform: translateY(-50%)`}
 		/>
 	</div>
 </div>
