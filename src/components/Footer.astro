@@ -1,16 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import { Facebook, Instagram, Linkedin } from "@lucide/astro";
+// import { Facebook, Instagram, Linkedin } from "@lucide/astro";
 import { FOOTER_INFO } from "@/constants/links";
 import logo from "@/assets/brand/logo.png";
 
 const year = new Date().getFullYear();
 
-const social = [
-	{ name: "LinkedIn", href: "#", Icon: Linkedin },
-	{ name: "Facebook", href: "#", Icon: Facebook },
-	{ name: "Instagram", href: "#", Icon: Instagram },
-] as const;
+// const social = [
+// 	{ name: "LinkedIn", href: "#", Icon: Linkedin },
+// 	{ name: "Facebook", href: "#", Icon: Facebook },
+// 	{ name: "Instagram", href: "#", Icon: Instagram },
+// ] as const;
 ---
 
 <footer class="border-t border-border bg-white text-foreground">
@@ -55,7 +55,8 @@ const social = [
 			</ul>
 		</div>
 
-		{/* Servicio de Atención */}
+		{/*
+		Servicio de Atención + RRSS (aún no disponibles)
 		<div class="min-w-0 md:flex-1 md:max-w-xs">
 			<h3 class="font-display mb-1 text-base font-bold text-foreground">
 				Servicio de Atención
@@ -75,6 +76,7 @@ const social = [
 				}
 			</div>
 		</div>
+		*/}
 	</div>
 
 	<p class="container-page px-4 pb-8 text-center text-xs text-muted-foreground sm:px-6 lg:px-8">
