@@ -67,10 +67,10 @@ h4 {
 	}
 }
 
-/* Keyframes outside @layer so Tailwind does not drop the end state */
+/* Animaciones utilitarias (sin fill-mode both: no ocultan contenido al navegar) */
 @keyframes daffer-fade-in {
 	0% {
-		opacity: 0;
+		opacity: 0.01;
 	}
 	100% {
 		opacity: 1;
@@ -79,8 +79,8 @@ h4 {
 
 @keyframes daffer-fade-in-up {
 	0% {
-		opacity: 0;
-		transform: translate3d(0, 24px, 0);
+		opacity: 0.01;
+		transform: translate3d(0, 12px, 0);
 	}
 	100% {
 		opacity: 1;
@@ -111,18 +111,18 @@ h4 {
 
 @media (prefers-reduced-motion: no-preference) {
 	.animate-fade-in {
-		animation: daffer-fade-in 0.8s ease-out both;
+		animation: daffer-fade-in 0.35s ease-out;
 	}
 
 	.animate-fade-in-up {
-		animation: daffer-fade-in-up 0.9s ease-out both;
+		animation: daffer-fade-in-up 0.35s ease-out;
 	}
 
 	.animate-delay-100 {
-		animation-delay: 0.1s;
+		animation-delay: 0.05s;
 	}
 
 	.animate-delay-200 {
-		animation-delay: 0.2s;
+		animation-delay: 0.1s;
 	}
 }
