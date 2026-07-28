@@ -4,12 +4,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-	vite: {
-		plugins: [tailwindcss()],
-	},
-	// Prefetch al hover acelera navegación sin SPA/transitions
-	prefetch: {
-		prefetchAll: true,
-		defaultStrategy: "hover",
-	},
+    vite: {
+        plugins: [tailwindcss()],
+    },
 });

@@ -7,15 +7,16 @@ import logo from "@/assets/brand/logo.png";
 const pathname = Astro.url.pathname;
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-white">
+<header class="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-white/95 backdrop-blur-sm">
 	<div class="container-page flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
 		<a href="/" class="shrink-0" aria-label="DAFFER — Inicio">
 			<Image
 				src={logo}
 				alt="DAFFER"
 				class="h-10 w-auto object-contain sm:h-12"
-				widths={[160, 240]}
+				widths={[200, 320]}
 				sizes="160px"
+				priority
 			/>
 		</a>
 
@@ -26,7 +27,6 @@ const pathname = Astro.url.pathname;
 					return (
 						<a
 							href={page.href}
-							data-astro-prefetch
 							class:list={[
 								"font-display text-sm font-semibold tracking-wide uppercase transition-colors",
 								active ? "text-brand" : "text-foreground hover:text-brand",
@@ -62,7 +62,6 @@ const pathname = Astro.url.pathname;
 			PAGES.map((page) => (
 				<a
 					href={page.href}
-					data-astro-prefetch
 					class="font-display mobile-nav-link py-3 text-sm font-semibold tracking-wide uppercase text-foreground hover:text-brand"
 				>
 					{page.name}
